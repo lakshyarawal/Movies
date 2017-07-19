@@ -25,9 +25,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MovieV
     }
 
 
-    public RecyclerAdapter(Context context, ArrayList<Movie> notes, MovieClickListener listener) {
+    public RecyclerAdapter(Context context, ArrayList<Movie> movies, MovieClickListener listener) {
         mContext = context;
-        mMovies = notes;
+        mMovies = movies;
         mListener = listener;
     }
 

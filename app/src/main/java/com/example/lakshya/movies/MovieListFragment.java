@@ -45,6 +45,8 @@ public class MovieListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.movie_list, container, false);
         mRecyclerView = v.findViewById(R.id.recycler_view);
+        mMovies = new ArrayList<>();
+        movieNames= new ArrayList<>();
         mAdapter = new RecyclerAdapter(getContext(), mMovies, new RecyclerAdapter.MovieClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -58,8 +60,10 @@ public class MovieListFragment extends Fragment {
             }
         });
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.canScrollHorizontally();
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.HORIZONTAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         fetchMovies();
         return v;
