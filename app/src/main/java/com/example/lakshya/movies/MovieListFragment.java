@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.lakshya.movies.network.ApiInterface;
+import com.example.lakshya.movies.network.MovieResponse;
 
 import java.util.ArrayList;
 
@@ -70,18 +72,19 @@ public class MovieListFragment extends Fragment {
                 .build();
 
         ApiInterface apiInterface =  retrofit.create(ApiInterface.class);
-        Call<ArrayList<Movie>> call  =  apiInterface.getPopularMovies(MainActivity.API_KEY);
+        Call<MovieResponse> call  =  apiInterface.getMovieResponse(MainActivity.API_KEY);
 
 
-        call.enqueue(new Callback<ArrayList<Movie>>() {
+        call.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<ArrayList<Movie>> call, Response<ArrayList<Movie>> response) {
-                ArrayList<Movie> movieArrayList = response.body();
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                MovieResponse movieResponse = response.body();
+                ArrayList<Movie> movieArrayList = movieResponse.getMovieArrayList();
                 onDownloadComplete(movieArrayList);
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Movie>> call, Throwable t) {
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
 
             }
         });
@@ -93,6 +96,7 @@ public class MovieListFragment extends Fragment {
         mMovies.addAll(movieArrayList);
         for(int i = 0; i < mMovies.size(); i++){
             movieNames.add(mMovies.get(i).getTitle());
+            Log.i("movieNames",mMovies.get(i).getTitle());
 mAdapter.notifyItemInserted(i);
         }
 //        for(Course c : courses){

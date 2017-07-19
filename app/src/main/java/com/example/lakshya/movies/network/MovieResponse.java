@@ -12,7 +12,10 @@ import java.util.ArrayList;
 public class MovieResponse {
     public int page;
 
-    public ArrayList<Movie> movieArrayList;
+@SerializedName("results")
+    private ArrayList<Movie> movieArrayList;
+
+
     public ArrayList<Movie> getMovieArrayList() {
         return movieArrayList;
     }
