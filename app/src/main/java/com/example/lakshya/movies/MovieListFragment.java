@@ -93,10 +93,8 @@ public class MovieListFragment extends Fragment {
         mMovies.addAll(movieArrayList);
         for(int i = 0; i < mMovies.size(); i++){
             movieNames.add(mMovies.get(i).getTitle());
+mAdapter.notifyItemInserted(i);
         }
-
-        mAdapter.notifyDataSetChanged();
-
 //        for(Course c : courses){
 //
 //        }
