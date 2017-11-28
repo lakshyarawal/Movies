@@ -4,12 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Movie implements Serializable{
-    private int id;
-    private String title;
 
-    public Movie() {
-    }
+public class Tv implements Serializable {
+    private int id;
+    private String name;
 
     @SerializedName("vote_average")
     private double voteAverage;
@@ -20,22 +18,22 @@ public class Movie implements Serializable{
     @SerializedName("poster_path")
     private String posterPath;
 
-    public String[] getGenre() {
+    public int[] getGenre() {
         return genre;
     }
 
-    public void setGenre(String[] genre) {
+    public void setGenre(int[] genre) {
         this.genre = genre;
     }
-
-    private String[] genre;
+    @SerializedName("genre_ids")
+    private int[] genre;
     private String overview;
-    @SerializedName("release_date")
+    @SerializedName("first_air_date")
     private String releaseDate;
 
 
-    public Movie(String title, double voteAverage, String[] genre, String releaseDate,String posterPath) {
-        this.title = title;
+    public Tv(String name, double voteAverage, int[] genre, String releaseDate,String posterPath) {
+        this.name = name;
         this.voteAverage = voteAverage;
         this.genre = genre;
         this.releaseDate = releaseDate;
@@ -58,12 +56,12 @@ public class Movie implements Serializable{
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getVoteAverage() {

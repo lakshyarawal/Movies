@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        style="@style/ThemeOverlay.AppCompat.Dark">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:id="@+id/MoviePosterView"
+            android:layout_marginRight="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/MovieGenre"
+            android:textSize="16sp"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/MovieOverview"
+        android:textSize="20sp"
+        />
+
+</LinearLayout>

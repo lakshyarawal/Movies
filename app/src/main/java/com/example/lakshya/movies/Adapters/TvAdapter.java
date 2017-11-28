@@ -1,4 +1,4 @@
-package com.example.lakshya.movies;
+package com.example.lakshya.movies.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,17 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.lakshya.movies.R;
+import com.example.lakshya.movies.Tv;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by LAKSHYA on 7/18/2017.
- */
-
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MovieViewHolder> {
+public class TvAdapter extends RecyclerView.Adapter<TvAdapter.MovieViewHolder> {
     private Context mContext;
-    private ArrayList<Movie> mMovies;
+    private ArrayList<Tv> mMovies;
     private MovieClickListener mListener;
 
     public interface MovieClickListener {
@@ -25,7 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MovieV
     }
 
 
-    public RecyclerAdapter(Context context, ArrayList<Movie> movies, MovieClickListener listener) {
+    public TvAdapter(Context context, ArrayList<Tv> movies, MovieClickListener listener) {
         mContext = context;
         mMovies = movies;
         mListener = listener;
@@ -39,8 +40,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MovieV
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        Movie movie = mMovies.get(position);
-        holder.titleTextView.setText(movie.getTitle());
+        Tv movie = mMovies.get(position);
+        holder.titleTextView.setText(movie.getName());
+        Picasso.with(mContext)
+                .load("http://image.tmdb.org/t/p/w500/"+movie.getPosterPath())
+                .into(holder.imageView);
     }
 
     @Override
@@ -52,6 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MovieV
     public static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView titleTextView;
+        ImageView imageView ;
         Button addButton;
         MovieClickListener mMovieClickListener;
 
@@ -59,6 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MovieV
             super(itemView);
             itemView.setOnClickListener(this);
             mMovieClickListener = listener;
+            imageView = itemView.findViewById(R.id.MoviePoster);
             titleTextView = itemView.findViewById(R.id.TitleText);
             addButton = itemView.findViewById(R.id.AddButton);
             addButton.setOnClickListener(this);
